@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.mapper.CompanyMapper">
+    <!-- 实体类与表名的映射-->
+    <resultMap id="BaseResultMap" type="com.myweb.pojo.Company">
+        <id column="cid" jdbcType="INTEGER" property="cid"/>
+        <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+        <result column="company_type" jdbcType="VARCHAR" property="companyType"/>
+        <result column="company_login_name" jdbcType="VARCHAR" property="companyLoginName"/>
+        <result column="company_pwd" jdbcType="VARCHAR" property="companyPwd"/>
+        <result column="company_address" jdbcType="VARCHAR" property="companyAddress"/>
+        <result column="company_website" jdbcType="VARCHAR" property="companyWebsite"/>
+        <result column="company_desc" jdbcType="VARCHAR" property="companyDesc"/>
+        <result column="emp_num" jdbcType="VARCHAR" property="empNum"/>
+    </resultMap>
+    <sql id="columnAll">
+        cid
+        ,company_name,company_type,company_login_name,company_pwd,company_address,company_website,company_desc,emp_num
+    </sql>
+    <!--注册公司-->
+    <insert id="insert" parameterType="com.myweb.pojo.Company">
+        insert into company (cid, company_name, company_type, company_login_name,
+                             company_pwd, company_address, company_website,
+                             company_desc, emp_num)
+        values (#{cid}, #{companyName}, #{companyType}, #{companyLoginName},
+                #{companyPwd}, #{companyAddress}, #{companyWebsite}, #{companyDesc}, #{empNum});
+    </insert>
+    <!--根据公司登录名查找公司-->
+    <select id="findCompanyByName" parameterType="string" resultMap="BaseResultMap">
+        select <include refid="columnAll"></include> from company where company_login_name = #{companyLoginName}
+    </select>
+    <!--根据公司实际名字查找公司-->
+    <select id="findByCompanyName" parameterType="string" resultMap="BaseResultMap">
+        select <include refid="columnAll"></include> from company where company_name = #{companyName}
+    </select>
+    <!--登录-->
+    <select id="getCompanyByNameAndPwd" resultMap="BaseResultMap">
+        select  <include refid="columnAll"></include> from company where company_login_name = #{companyLoginName} and
+        company_pwd = #{companyPwd}
+    </select>
+    <!--根据公司登录名查找公司-->
+    <select id="findCompanyById" parameterType="int" resultMap="BaseResultMap">
+        select <include refid="columnAll"></include> from company where cid = #{cid}
+    </select>
+</mapper>

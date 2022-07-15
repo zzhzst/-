@@ -16,4 +16,53 @@
         <property name="prefix" value="/WEB-INF/jsp" />
         <property name="suffix" value=".jsp" />
     </bean>
+    <!--用户拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/*"/>
+            <mvc:mapping path="/apply/accpet"/>
+            <mvc:mapping path="/apply//applyRecord"/>
+            <mvc:mapping path="/favorite/favorite"/>
+            <mvc:mapping path="/favorite/favoriteRecord"/>
+            <mvc:mapping path="/favorite/deleteFavorites"/>
+            <mvc:mapping path="/words/*"/>
+            <mvc:exclude-mapping path="/user/registUser"/>
+            <mvc:exclude-mapping path="/user/accessLogin"/>
+            <mvc:exclude-mapping path="/user/findUserByRealname"/>
+            <mvc:exclude-mapping path="/user/findAllUser"/>
+            <mvc:exclude-mapping path="/user/deleteById"/>
+            <bean class="com.myweb.interceptor.UserLoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!--企业登录拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/com/*"/>
+            <mvc:mapping path="/job/tofindJobByCom"/>
+            <mvc:mapping path="/job//toAddPost"/>
+            <mvc:mapping path="/job//addPost"/>
+            <mvc:mapping path="/job/deleteJobById"/>
+            <mvc:exclude-mapping path="/com/index"/>
+            <mvc:exclude-mapping path="/apply/findApply"/>
+            <mvc:exclude-mapping path="/com/registCom"/>
+            <mvc:exclude-mapping path="/com/accessComLogin"/>
+            <mvc:exclude-mapping path="/com/show"/>
+            <mvc:exclude-mapping path="/com/findAllCompany"/>
+            <mvc:exclude-mapping path="/com/deleteById"/>
+            <bean class="com.myweb.interceptor.CompanyLoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <!--管理员登录拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/*"/>
+            <mvc:mapping path="/user/findAllUser"/>
+            <mvc:mapping path="/user/deleteById"/>
+            <mvc:mapping path="/com/findAllCompany"/>
+            <mvc:mapping path="/user/deleteById"/>
+            <mvc:exclude-mapping path="/admin/login"/>
+            <mvc:exclude-mapping path="/admin/accessLogin"/>
+            <bean class="com.myweb.interceptor.AdminLoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

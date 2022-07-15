@@ -19,7 +19,9 @@
 	    <div class="row">
 		<ul class="nav nav-list">
 			<li class="active font"><a href="${path}/apply/findApply?companyName=${sessionScope.currCom.companyName}" target="body">企业信箱</a></li>
-			<li class="active font"><a href="${path}/com/toAddPost" target="body">发布职位</a></li>
+			<li class="active font"><a href="${path}/job/toAddPost" target="body">发布职位</a></li>
+			<li class="active font"><a href="${path}/job/tofindJobByCom" target="body">查看职位</a></li>
+			<li class="active font"><a href="${path}/com/editCompany?cid=${sessionScope.currCom.cid}" target="body">更新信息</a></li>
             <li class="active font"><a href="${path}/main/index" target="_parent">网站首页</a></li>
 		</ul>
 	   </div>

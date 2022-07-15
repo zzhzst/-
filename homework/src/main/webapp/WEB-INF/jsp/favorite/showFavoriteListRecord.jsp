@@ -44,7 +44,7 @@ table th,td{
 				<th>工作地址</th>
 				<th>薪资</th>
 				<th>收藏时间</th>
-			<!-- 	<td>操作</td> -->
+				<td>操作</td>
 			</tr>
 			<c:forEach items="${favoritesList}" var="favorites">
 				<tr class="table table-hover">
@@ -58,9 +58,9 @@ table th,td{
 
 					<td>${favorites.releaseTime}</td>
 					 <td>
-					<%--<a href="${pageContext.request.contextPath }/favorite/deleteById?fid=${favorites.fid}"
+					<a href="${pageContext.request.contextPath }/favorite/deleteFavoritesById?fid=${favorites.fid}"
 						class="btn btn-default" id="del">删除</a></td>
-					</tr>--%>
+					</tr>
 			</c:forEach>
 		</table>
 	</div>

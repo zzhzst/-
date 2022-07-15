@@ -32,16 +32,10 @@ public class MainController {
         return "/main/body";
     }
 
-    //跳转到企业注册的页面
-    @RequestMapping("/registCom")
-    public String toRegistCom() {
-        return "/company/registCom";
-    }
-
-    //企业登录的页面
-    @RequestMapping("/companyLogin")
-    public String comlogin(Model model) {
-        return "/company/login";
+    //企业登录注册的页面
+    @RequestMapping("/loginOrRegist")
+    public String loginOrRegist(Model model) {
+        return "/company/loginOrRegist";
     }
 
     //跳转到用户注册的页面

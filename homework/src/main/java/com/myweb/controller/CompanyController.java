@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/com")
@@ -66,17 +67,17 @@ public class CompanyController {
     }
 
     //跳转到企业首页
-    @RequestMapping("index")
+    @RequestMapping("/index")
     public String index() {
         return "/company/index";
     }
 
     //退出登录
     @RequestMapping(value = "/exit")
-    public String exit(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String exit(HttpServletRequest request) throws Exception {
         //退出时清空session
         request.getSession().removeAttribute("currCom");
-        return "/company/login";
+        return "/company/loginOrRegist";
     }
 
     //后台的三个界面
@@ -95,52 +96,11 @@ public class CompanyController {
         return "/company/body";
     }
 
-    //跳转到添加职位页面
-    @RequestMapping("/toAddPost")
-    public String toAddPost(Model model) {
-        return "/company/addPost";
-    }
 
-    //添加职位
-    @RequestMapping("/addPost")
-    @ResponseBody
-    public Message addPost(HttpServletRequest request, String jobName, String jobAddress, Double jobSalary,
-                           String releaseTime, Integer cid) {
-        Message msg = new Message();
-        Company company = (Company) request.getSession().getAttribute("currCom");
-        if (company != null) {
-            Job job = jobService.findByCidAndJobName(cid, jobName);
-            if (job == null) {
-                //将数据封装到新的job对象，插入数据库
-                Job job_ = new Job();
-                job_.setCid(String.valueOf(cid));
-                job_.setJobAddress(jobAddress);
-                job_.setJobName(jobName);
-                job_.setJobSalary(jobSalary);
-                job_.setReleaseTime(releaseTime);
-                int result = jobService.insertJob(job_);
-                if (result == 1) {
-                    msg.setStr("success");
-                    return msg;
-                } else {
-                    msg.setStr("插入职位失败");
-                    return msg;
-                }
-            } else {
-                //不可以
-                msg.setStr("新增的职位名称不可以重复");
-                return msg;
-            }
-        } else {
-            msg.setStr("fail");
-            return msg;
-        }
-    }
 
     //展示企业的详细信息
     @RequestMapping("/show")
     public String show(Integer cid, String jobName, String jobAddress, String releaseTime, Double jobSalary, String companyName, Model model) {
-        System.out.println(jobName);
         Company company = companyService.findCompanyById(cid);
         model.addAttribute("jobName", jobName);
         model.addAttribute("jobAddress", jobAddress);
@@ -150,4 +110,47 @@ public class CompanyController {
         model.addAttribute("company", company);
         return "/job/showOneCompany";
     }
+
+    // 查询所有的企业信息
+    @RequestMapping("/findAllCompany")
+    public String findAllCompany(Model model) {
+        List<Company> companyList = companyService.findAll();
+        model.addAttribute("companyList", companyList);
+        return "/company/listAllCompany";
+    }
+
+    // 跳转到修改页面
+    @RequestMapping("/editCompany")
+    public String editCompany(Integer cid, Model model) {
+        // 根据id查询
+        Company company = companyService.findCompanyById(cid);
+        // 页面回显
+        model.addAttribute("company", company);
+        return "/company/editCompany";
+    }
+
+    // 根据ID进行删除
+    @RequestMapping("/deleteById")
+    public String deleteById(Integer cid) {
+        int num = companyService.deleteById(cid);
+        // 重定向到列表界面
+        return "redirect:/com/findAllCompany";
+    }
+
+    //更新企业信息
+    @RequestMapping("/editCompanySubmit")
+    public String editCompanySubit(Company company){
+        companyService.editCompanySubit(company);
+        return "redirect:/com/findAllCompany";
+    }
+
+    //查看公司数量
+    @RequestMapping("/countComNumber")
+    @ResponseBody
+    public void countComNumber(HttpSession session){
+        int comNumber = companyService.findComNumber();
+        session.setAttribute("comNumber",comNumber);
+    }
+
+
 }

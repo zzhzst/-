@@ -6,6 +6,8 @@ import com.myweb.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompanyServiceImpl implements CompanyService {
     @Autowired
@@ -34,5 +36,25 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company findCompanyById(Integer cid) {
         return companyMapper.findCompanyById(cid);
+    }
+
+    @Override
+    public List<Company> findAll() {
+        return companyMapper.findAll();
+    }
+
+    @Override
+    public int deleteById(Integer cid) {
+        return companyMapper.deleteById(cid);
+    }
+
+    @Override
+    public int editCompanySubit(Company company) {
+        return companyMapper.editCompanySubit(company);
+    }
+
+    @Override
+    public int findComNumber() {
+        return companyMapper.findComNumber();
     }
 }

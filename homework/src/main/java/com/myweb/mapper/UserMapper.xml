@@ -66,4 +66,16 @@
             school     = #{school,jdbcType=VARCHAR}
         where uid = #{uid}
     </update>
+    <!--查询所有用户-->
+    <select id="findAllUser" resultMap="BaseResultMap">
+        select <include refid="columnAll"></include> from user
+    </select>
+    <!--根据id删除用户-->
+    <delete id="deleteById">
+        delete from user where uid = #{uid}
+    </delete>
+    <!--计算用户总数-->
+    <select id="countUserNumber" resultType="int">
+        select count(*) from user;
+    </select>
 </mapper>

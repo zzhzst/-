@@ -16,4 +16,7 @@ public interface ApplyJobService {
 
     //根据真实姓名查找申请记录
     public List<Apply> findApplyRecordByRealname(String realname);
+
+    //计算求职的次数
+    public int countApplyNumber();
 }

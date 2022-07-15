@@ -21,8 +21,8 @@ table td{padding-top:15px;}
 #divTable {
 	width:750px;
 	height:350px;
-	margin-left:200px;
-	margin-top:100px;
+	margin-left:400px;
+	margin-top:200px;
 }
 body {
 	background-color: #f5fffa;

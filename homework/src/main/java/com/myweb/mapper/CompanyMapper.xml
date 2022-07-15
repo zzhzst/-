@@ -42,4 +42,22 @@
     <select id="findCompanyById" parameterType="int" resultMap="BaseResultMap">
         select <include refid="columnAll"></include> from company where cid = #{cid}
     </select>
+    <!--查找所有公司-->
+    <select id="findAll" resultMap="BaseResultMap">
+        select <include refid="columnAll"></include> from company
+    </select>
+    <!--根据id删除公司-->
+    <delete id="deleteById" parameterType="int">
+        delete from company where cid = #{cid}
+    </delete>
+    <!--更新公司信息-->
+    <update id="editCompanySubit" parameterType="com.myweb.pojo.Company">
+        update company set company_name = #{companyName},company_type = #{companyType},
+            company_address = #{companyAddress},company_website = #{companyWebsite},
+            company_desc = #{companyDesc},emp_num = #{empNum} where cid = #{cid}
+    </update>
+    <!--查看公司数量-->
+    <select id="findComNumber" resultType="int">
+        select count(*) from company;
+    </select>
 </mapper>

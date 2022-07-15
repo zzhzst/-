@@ -35,19 +35,18 @@ li {
 	<c:choose>
 		<c:when test="${empty sessionScope.currUser}">
 			<ul class="nav nav-pills bg">
-				<li class="active"><a href="${path}/main/index"
-					target="_parent">Welcome to 蓝精领</a></li>
+				<li class="active"><a href="${path}/main/index" target="_parent">Welcome to 蓝精领</a></li>
 				<li class="col-md-3"></li>
-				<li style="width: 600px;"></li>
-				<li><a href="${path}/main/registUser" target="_parent">用户注册</a></li>
-				<li><a href="${path}/main/userLogin" target="_parent">用户登录</a></li>
+				<li style="width: 400px;"></li>
+				<li><a href="${path}/main/userLogin" target="_parent">用户登录/注册</a></li>
+				<li><a href="${path}/main/loginOrRegist" target="_parent">企业登录/注册</a></li>
 			</ul>
 		</c:when>
 		<c:when test="${!empty sessionScope.currUser}">
 			<div style="height: 40px; width: 100%; float: right;">
 				<ul class="nav nav-pills bg">
 					<li class="active"><a href="${path}/main/index"
-						target="_parent">Welcome to 蓝精领</a></li>
+						target="_parent">蓝精领</a></li>
 					<li style="width: 600px;"></li>
 					<li class="col-md-2" style="text-align:center;"><a href="javascript:void(0)">用户：${sessionScope.currUser.realname}</a></li>
 					<li class="col-sm-1" style="width:140px;"><a href="${path}/user/showResume" target="body">个人简历</a></li>
@@ -56,6 +55,8 @@ li {
 			</div>
 		</c:when>
 	</c:choose>
+
+
 	</div>
 </div>
 </body>

@@ -12,8 +12,11 @@
 
 <style type="text/css">
 #divMain {
-	width: 100%;
-	height: 100%;
+	margin: 0px 20px;
+	padding-top: 20px;
+}
+#divTable{
+	padding: 20px 50px;
 }
 th,td{text-align: center;}
 
@@ -36,38 +39,42 @@ th,td{text-align: center;}
 
 <body>
 	<div id="divMain">
+		<form action="${path}/job/findAllJob" class="text-center" id="searchForm" method="post">
+			职位名称: <input type="text" name="jobName" placeholder="Java后端开发"/>
+			工作地址: <input type="text" name="jobAddress" placeholder="上海"/>
+			公司名称: <input type="text" name="companyName" placeholder="江苏经贸有限公司"/>
+			<button type="button" class="btn btn-primary" onclick="search()">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索
+			</button>
+		</form>
 		<div id="divTable">
-				<form action="${path}/job/findAllJob" id="searchForm" method="post">
-					职位名称:<input type="text" name="jobName"/>
-					工作地址:<input type="text" name="jobAddress"/>
-					公司名称:<input type="text" name="companyName"/>
-					<button type="button" class="btn btn-default" onclick="search()" style="background-color:#afeeee;height:36px;width:100px;">搜索</button>
-				</form>
-				<table class="table table-hover table-hover">
-					<tr class="info">
-						<td colspan="10"><h3>职位列表</h3></td>
-					</tr>
-					<tr class="danger">
-						<th>职位名称</th>
-						<th>工作地点</th>
-						<th>公司名</th>
-						<th>薪资</th>
-						<th>发布时间</th>
-						<th>操作</th>
-					</tr>
-					<c:forEach items="${jobInfoList}" var="jobInfo">
-						<tr class="table table-hover">
-							<td>${jobInfo.jobName}</td>
-							<td>${jobInfo.jobAddress}</td>
-							<td>${jobInfo.company.companyName}</td>	
-							<td>${jobInfo.jobSalary}</td>
-							<td><${jobInfo.releaseTime}/></td>
-							<td><a href="javascript:void(0)"
-								onclick="show('${jobInfo.company.cid}','${jobInfo.jobName}',
-								'${jobInfo.jobAddress}','${jobInfo.releaseTime}','${jobInfo.jobSalary}','${jobInfo.company.companyName}')" class="btn btn-default">查看公司详情</a></td>
-						</tr>
-					</c:forEach>
-				</table>
+			<c:forEach items="${jobInfoList}" var="jobInfo">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3 class="panel-title"><b>${jobInfo.jobName}</b></h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-4">
+								<p>薪资:</p>
+								<h3 style="color: plum"><b>${jobInfo.jobSalary}</b></h3>
+							</div>
+							<div class="col-md-4">
+								<h4>工作地点：${jobInfo.jobAddress}</h4>
+								<h5>发布时间：${jobInfo.releaseTime}</h5>
+							</div>
+							<div class="col-md-4">
+								<a href="javascript:void(0)"
+								   onclick="show('${jobInfo.company.cid}','${jobInfo.jobName}',
+										   '${jobInfo.jobAddress}','${jobInfo.releaseTime}','${jobInfo.jobSalary}','${jobInfo.company.companyName}')" class="btn btn-info">
+										${jobInfo.company.companyName}
+								</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </body>

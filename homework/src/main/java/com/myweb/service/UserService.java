@@ -23,4 +23,13 @@ public interface UserService {
 
     //保存简历，也就是个人信息
     public int saveResume(User user);
+
+    //查询所有用户
+    public List<User> findAllUser();
+
+    //根据id删除用户
+    int deleteById(Integer uid);
+
+    //计算用户总数
+    int countUserNumber();
 }

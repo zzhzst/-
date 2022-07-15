@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -44,5 +46,18 @@ public class UserServiceImpl implements UserService {
 		return userMapper.saveResume(user);
 	}
 
+	@Override
+	public List<User> findAllUser() {
+		return userMapper.findAllUser();
+	}
 
+	@Override
+	public int deleteById(Integer uid) {
+		return userMapper.deleteById(uid);
+	}
+
+	@Override
+	public int countUserNumber() {
+		return userMapper.countUserNumber();
+	}
 }

@@ -47,7 +47,7 @@ table th,td{
 
 					<td>${apply_.jobSalary}</td>
 
-					<td><${apply_.releaseTime}"></td>
+					<td><${apply_.releaseTime}></td>
 					</tr>
 			</c:forEach>
 		</table>

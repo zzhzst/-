@@ -15,14 +15,12 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 <style type="text/css">
 #divAll {
 	width:100%;
 	height:100%;
-	background-color:pink;
+	background-color:black;
+	opacity: 0.9;
 }
 #divTitle{
 	margin:0 auto;
@@ -31,6 +29,7 @@
 	padding-top:30px;
 	text-align:center;
 	font-weight: bold;
+	color: white;
 }
 #divAdmin{
 	float: right;
@@ -38,6 +37,7 @@
 	height:100px;
 	font-size:16px;
 	font-weight: bold;
+	color: white;
 }
 </style>
 </head>

@@ -34,5 +34,18 @@ public class JobServiceImpl implements JobService {
         return jobInfoExtMapper.findAll(map);
     }
 
+    @Override
+    public List<Job> findJobByCom(Integer cid) {
+        return jobMapper.findJobByCom(cid);
+    }
 
+    @Override
+    public int deleteJobById(Integer jobId) {
+        return jobMapper.deleteJobById(jobId);
+    }
+
+    @Override
+    public int countJobNumber() {
+        return jobMapper.countJobNumber();
+    }
 }

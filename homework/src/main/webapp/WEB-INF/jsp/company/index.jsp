@@ -13,7 +13,7 @@
 <title>企业后台页面</title>
 <style type="text/css">
 .table {
-	width: 1920px;
+	width: 1980px;
 	height: 720px;
 	border-collapse: collapse;
 }
@@ -44,17 +44,15 @@ body {
 </style>
 </head>
 <body>
-	<table class="table" align="center" border="1">
+	<table class="table" align="center" border="0">
 		<tr class="trTop">
 			<td colspan="2" class="tdTop">
-				<iframe frameborder="0"
-					scrolling="no" src="${path}/com/top" name="top"></iframe>
+				<iframe frameborder="0" scrolling="no" src="${path}/com/top" name="top"></iframe>
 			</td>
 		</tr>
 		<tr>
 			<td class="tdLeft">
-				<iframe frameborder="0"
-					src="${path}/com/left" name="left"></iframe>
+				<iframe frameborder="0" src="${path}/com/left" name="left"></iframe>
 			</td>
 
 			<td

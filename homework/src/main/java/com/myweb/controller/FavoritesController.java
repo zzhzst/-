@@ -65,4 +65,11 @@ public class FavoritesController {
         return "/favorite/showFavoriteListRecord";
     }
 
+    //删除职位的收藏记录
+    @RequestMapping("/deleteFavoritesById")
+    public String deleteFavoritesById(Integer fid){
+        favoritesService.deleteFavotiesById(fid);
+        return "redirect:/favorite/favoriteRecord";
+    }
+
 }

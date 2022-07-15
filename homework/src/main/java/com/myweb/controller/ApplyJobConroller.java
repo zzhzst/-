@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -71,5 +72,13 @@ public class ApplyJobConroller {
         List<Apply> applyList_ = applyJobService.findApplyRecordByRealname(realname);
         model.addAttribute("applyList_", applyList_);
         return "/apply/showApplyRecord";
+    }
+
+    //查询职位投递个数
+    @RequestMapping("/countApplyNumber")
+    @ResponseBody
+    public void countApplyNumber(HttpSession session){
+        int applyNumber = applyJobService.countApplyNumber();
+        session.setAttribute("applyNumber",applyNumber);
     }
 }

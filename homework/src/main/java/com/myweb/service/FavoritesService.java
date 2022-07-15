@@ -12,4 +12,7 @@ public interface FavoritesService {
     public Favorites findFavoriteByAll_(String realname, String jobAddress, String jobName, String companyName);
 
     List<Favorites> findFavoriteByRealName(String realname);
+
+    //根据id删除收藏记录
+    int deleteFavotiesById(Integer fid);
 }

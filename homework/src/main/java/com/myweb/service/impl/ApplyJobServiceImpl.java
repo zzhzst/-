@@ -33,4 +33,9 @@ public class ApplyJobServiceImpl implements ApplyJobService {
     public List<Apply> findApplyRecordByRealname(String realname) {
         return applyJobMapper.findApplyRecordByRealname(realname);
     }
+
+    @Override
+    public int countApplyNumber() {
+        return applyJobMapper.countApplyNumber();
+    }
 }

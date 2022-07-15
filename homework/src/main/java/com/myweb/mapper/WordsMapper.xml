@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.mapper.WordsMapper">
+    <resultMap id="BaseResult" type="com.myweb.pojo.Words">
+        <id column="wid" property="wid"></id>
+        <result column="realname" property="realname"></result>
+        <result column="content" property="content"></result>
+    </resultMap>
+
+    <sql id="columnAll">
+        wid,realname,content
+    </sql>
+
+    <!--新增留言-->
+    <insert id="insertWords" parameterType="com.myweb.pojo.Words">
+        insert into words (wid,realname,content) values (#{wid},#{realname},#{content});
+    </insert>
+
+    <!--查看所有留言-->
+    <select id="findAllWords" resultMap="BaseResult">
+        select <include refid="columnAll"></include> from words
+    </select>
+    <!--删除留言-->
+    <delete id="deleteWordsById" parameterType="int">
+        delete from words where wid = #{wid}
+    </delete>
+</mapper>

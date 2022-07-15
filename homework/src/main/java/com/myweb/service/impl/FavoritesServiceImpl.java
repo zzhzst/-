@@ -27,4 +27,9 @@ public class FavoritesServiceImpl implements FavoritesService {
     public List<Favorites> findFavoriteByRealName(String realname) {
         return favoritesMapper.findFavoriteByRealName(realname);
     }
+
+    @Override
+    public int deleteFavotiesById(Integer fid) {
+        return favoritesMapper.deleteFavoritesById(fid);
+    }
 }

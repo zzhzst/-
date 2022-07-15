@@ -15,6 +15,7 @@
         fid
         , job_address, job_name, job_salary, release_time, company_name, realname
     </sql>
+    <!--添加收藏-->
     <insert id="insertFavorite" parameterType="com.myweb.pojo.Favorites">
         insert into favorites (fid, job_address, job_name,
                                job_salary, release_time, company_name,
@@ -23,13 +24,17 @@
                 #{jobSalary,jdbcType=DOUBLE}, #{releaseTime,jdbcType=DATE}, #{companyName,jdbcType=VARCHAR},
                 #{realname,jdbcType=VARCHAR})
     </insert>
-
+    <!--判断是否第一次插入-->
     <select id="findFavoriteByAll_" resultMap="BaseResultMap">
         select <include refid="columnAll"></include> from favorites where realname = #{realname}
         and job_address = #{jobAddress} and job_name = #{jobName} and company_name = #{companyName}
     </select>
-
+    <!--查询收藏记录-->
     <select id="findFavoriteByRealName" resultMap="BaseResultMap">
         select <include refid="columnAll"></include> from favorites where realname = #{realname}
     </select>
+    <!--根据id删除收藏记录-->
+    <delete id="deleteFavoritesById" parameterType="int">
+        delete from  favorites where fid = #{fid}
+    </delete>
 </mapper>

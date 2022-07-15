@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -67,7 +68,7 @@ public class UserController {
     }
 
     //查看个人简历
-    @RequestMapping("showResume")
+    @RequestMapping("/showResume")
     public String showResume(Model model, HttpServletRequest request) {
         //获得session中存的当前对象
         User currUser = (User) request.getSession().getAttribute("currUser");
@@ -89,20 +90,20 @@ public class UserController {
     }
 
     //保存简历
-    @RequestMapping("saveResume")
+    @RequestMapping("/saveResume")
     public String saveResume(Model model, User user) {
         int num = userService.saveResume(user);
         if (num == 1) {
             model.addAttribute("user", user);
-            return "forward:showResume";//转发到预览简历
+            return "/user/showUserResume";//转发到预览简历
         } else {
-            return "/main/login";
+            return "/user/login";
         }
     }
 
     //企业据用户真实名字查询其详细
 
-    @RequestMapping("findUserByRealname")
+    @RequestMapping("/findUserByRealname")
     public String findUserByRealname(String realname,Model model) {
         User user = userService.findUserByRealname(realname);
         if(user!=null){
@@ -112,4 +113,29 @@ public class UserController {
             throw new RuntimeException("对不起，没有该用户的具体信息");
         }
     }
+
+   //查询所有的用户
+    @RequestMapping("/findAllUser")
+    public String findAllUser(Model model){
+        List<User> userList = userService.findAllUser();
+        model.addAttribute("userList", userList);
+        return "/user/listUser";
+    }
+
+    // 根据ID进行删除
+    @RequestMapping("/deleteById")
+    public String deleteById(Integer uid) {
+        userService.deleteById(uid);
+        // 重定向到用户列表界面
+        return "redirect:/user/findAllUser";
+    }
+
+    //查看用户总人数
+    @RequestMapping("/countUserNumber")
+    @ResponseBody
+    public void countUserNumber(HttpSession session){
+        int userNumber = userService.countUserNumber();
+        session.setAttribute("userNumber",userNumber);
+    }
+
 }

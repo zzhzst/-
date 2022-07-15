@@ -18,4 +18,7 @@ public interface ApplyJobMapper {
 
     //根据真实姓名查找所有的申请记录
     List<Apply> findApplyRecordByRealname(String realname);
+
+    //查询投递次数
+    int countApplyNumber();
 }

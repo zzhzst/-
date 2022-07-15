@@ -34,4 +34,8 @@
     <select id="findApplyRecordByRealname" resultMap="BaseResultMap">
         select <include refid="columnAll"></include> from apply where realname = #{realname}
     </select>
+    <!---->
+    <select id="countApplyNumber" resultType="int">
+        select count(*) from apply;
+    </select>
 </mapper>

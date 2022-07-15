@@ -14,13 +14,26 @@
         job_id
         ,job_name,job_address,job_salary,release_time,cid
     </sql>
+    <!--新增职位-->
     <insert id="insertJob" parameterType="com.myweb.pojo.Job">
         insert into job (job_id, job_name, job_address, job_salary, release_time, cid)
         values (#{jobId,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, #{jobAddress,jdbcType=VARCHAR},
                 #{jobSalary,jdbcType=DOUBLE}, #{releaseTime,jdbcType=DATE}, #{cid,jdbcType=VARCHAR})
     </insert>
-
+    <!--根据企业id和工作名称查找是否有重复的职位-->
     <select id="findByCidAndJobName" resultMap="BaseResultMap">
         select <include refid="columnAll"></include> from job where cid = #{cid} and job_name = #{jobName}
+    </select>
+    <!--根据企业id查找企业已经发布的职位id-->
+    <select id="findJobByCom" parameterType="int" resultMap="BaseResultMap">
+        select <include refid="columnAll"></include> from job where cid = #{cid}
+    </select>
+    <!--根据企业id删除已经发布的职位-->
+    <delete id="deleteJobById" parameterType="int">
+        delete from job where job_id = #{JobId}
+    </delete>
+    <!--计算发布职位总数-->
+    <select id="countJobNumber" resultType="int">
+        select count(*) from job;
     </select>
 </mapper>

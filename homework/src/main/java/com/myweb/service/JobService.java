@@ -18,4 +18,13 @@ public interface JobService {
     //查询职位信息，这里连表查询
     public List<JobInfoExt> findAll(Map<String, Object> map);
 
+    //查询一家公司所有的上架职位
+    public List<Job> findJobByCom(Integer cid);
+
+    //删除职位
+    public int deleteJobById(Integer jobId);
+
+    //计算发布职位的个数
+    public int countJobNumber();
+
 }

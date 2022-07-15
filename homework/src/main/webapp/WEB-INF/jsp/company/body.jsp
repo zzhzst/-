@@ -17,7 +17,7 @@ body{background-color:#f0ffff}
 
 <body>
 	<div id="divMain">
-		<h1>Welcome 蓝精领后台系统</h1>
+		<h1></h1>
 	</div>
 
 </body>

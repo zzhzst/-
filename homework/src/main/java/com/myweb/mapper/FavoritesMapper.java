@@ -15,4 +15,7 @@ public interface FavoritesMapper {
 
     //根据真实姓名查询收藏记录
     List<Favorites> findFavoriteByRealName(String realname);
+
+    //根据收藏的id删除
+    int deleteFavoritesById(Integer fid);
 }
